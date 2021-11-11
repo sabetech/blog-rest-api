@@ -43,7 +43,7 @@ At these endpoints we can manipulate resources using common HTTP methods:
 - DELETE
 
 These methods are used in what is commonly known as CRUD: Create, Read, Update, and Delete.
-POST :: **Create**  Using the HTTP POST Method we can create a new resource.
-GET :: **Read** We can retrieve and read the resource with a GET request
-PUT/PATCH :: **Update**  Using PUT/PATCH, update an existing resource.
-DELETE :: **Delete**  Delete a resource.
+- POST :: **Create**  Using the HTTP POST Method we can create a new resource.
+- GET :: **Read** We can retrieve and read the resource with a GET request
+- PUT/PATCH :: **Update**  Using PUT/PATCH, update an existing resource.
+- DELETE :: **Delete**  Delete a resource.
