@@ -6,29 +6,26 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	controller "github.com/nerdcademy/restapi/controller/blog"
+	"github.com/nerdcademy/restapi/controller/vehiclecontroller"
 )
 
 var router *mux.Router
 
 func initHandlers() {
-	// we could have /api/post/{id} for GET/PUT/DELETE
-	// router.HandleFunc("/api/post/{id}", controller.{appropriateMethod}).Methods("{GET or POST or PUT")
-	// instead of what we have.  So the endpoint would be the same to read, update, and delete
-	// we'd just have different handlers for those actions
-	router.HandleFunc("/api/posts", controller.GetAllPosts).Methods("GET")
-	router.HandleFunc("/api/post/{id}", controller.GetPost).Methods("GET")
+	//I will refactor this bit
 
-	router.HandleFunc("/api/post/new", controller.CreatePost).Methods("POST")
+	router.HandleFunc("/api/vehicle_categories",
+		vehiclecontroller.SetRequiredHeaders(vehiclecontroller.GetAllVehicleCategories)).Methods("GET")
+	router.HandleFunc("/api/vehicle_category/{id}/relevant_taxes",
+		vehiclecontroller.SetRequiredHeaders(vehiclecontroller.GetVehicleRelevantTaxes)).Methods("GET")
+	router.HandleFunc("/api/vehicle_tax",
+		vehiclecontroller.SetRequiredHeaders(vehiclecontroller.GetVehicleTotalDuty)).Methods("GET")
 
-	router.HandleFunc("/api/post/update", controller.UpdatePost).Methods("PUT")
-
-	router.HandleFunc("/api/post/delete/{id}", controller.DeletePost).Methods("DELETE")
 }
 
 func Start() {
 	router = mux.NewRouter()
-	
+
 	initHandlers()
 	fmt.Printf("router initialized and listening on 3200\n")
 	log.Fatal(http.ListenAndServe(":3200", router))
